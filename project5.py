@@ -62,8 +62,6 @@ def show_cart(cart):
       print("There is nothing is in your cart...")
     
         
-
-
 def add_to_cart(item,cart,inventory):
     """
     This function adds an item to the cart
