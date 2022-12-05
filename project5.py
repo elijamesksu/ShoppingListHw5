@@ -22,9 +22,9 @@ def checkout(cart, inventory):
     total = 0
     receipt = ""
     for item in cart:
-        receipt += str(cart[item]['quantity']) + " " + item + " " + str(cart[item]['price']) + " " +     str(cart[item]['quantity'] * cart[item]['price']) + "\n" 
-        total += cart[item]['quantity'] * cart[item]['price']
-    total = print("Your subtotal is : $" + str(total) + "\n" "Your actual total for today is: $  = %.2f" % total)
+      print((str(cart[item]['quantity']) + " " + item + " at " "$" + str(cart[item]['price']) + "....." "$%.2f" % (cart[item]['quantity'] * cart[item]['price'])))
+    total += cart[item]['quantity'] * cart[item]['price']
+    total = print("Your total is $%.2f" % total)
     receipt += "Thank you for deciding to shop with us today!" 
     return receipt
 
@@ -34,23 +34,34 @@ def show_qty(inventory):
     """
     print("Here is the current inventory:")
     for item in inventory:
-        print(item, inventory[item]['quantity'])
+      qty = (inventory[item]['quantity'])
+      if qty == 0:
+        print(item, ": Out of Stock.")
+      else: 
+        print(qty,'of', item)
+        
 
 
 def show_prices(inventory):
     """
-    This function prints the inventory
+    This function prints the prices of the items
     """
     print("These are the current prices:")
     for item in inventory:
-        print(item, inventory[item]['price'])
+        print(item,'.....','$',inventory[item]['price'])
 
       
 def show_cart(cart): 
     """This function shows the items in your cart"""
-    print("Here is your cart:") 
+    product = 0 
+    print("Here is your current cart:") 
     for item in cart: 
-        print("\t", item, "x", cart[item]['quantity'])
+      product += 1 
+      print("\t", item, ".....", cart[item]['quantity'])
+    if product == 0:
+      print("There is nothing is in your cart...")
+    
+        
 
 
 def add_to_cart(item,cart,inventory):
@@ -66,7 +77,7 @@ def add_to_cart(item,cart,inventory):
             inventory[item]['quantity'] -= 1
             return True
         else:
-            print("Sorry, we don't have that many")
+            print("Sorry, we don't have any more!")
             return False
     else:
         print("Sorry, we don't have that item")
@@ -129,7 +140,6 @@ def main():
             item = input("What would you like to remove? :")
             remove_from_cart(item,cart,inventory,)
         elif choice == "C" or choice == "c":
-          print("Your order is :" , checkout(cart,inventory,))
           checkout(cart,inventory)
           shopping = False
          
@@ -138,10 +148,10 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print("Goodbye! Have a good day!")
-    quit()
-    main()
+    print("Thank you for shopping with us!")
 
 
 
+
+                    
 
